@@ -684,13 +684,12 @@ dependencies = [
 [[package]]
 name = "curve25519-dalek"
 version = "2.1.0"
-source = "git+https://github.com/garious/curve25519-dalek?rev=60efef3553d6bf3d7f3b09b5f97acd54d72529ff#60efef3553d6bf3d7f3b09b5f97acd54d72529ff"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5d85653f070353a16313d0046f173f70d1aadd5b42600a14de626f0dfb3473a5"
 dependencies = [
- "borsh",
  "byteorder",
  "digest 0.8.1",
- "rand_core",
- "serde",
+ "rand_core 0.5.1",
  "subtle 2.2.3",
  "zeroize",
 ]
@@ -698,12 +697,13 @@ dependencies = [
 [[package]]
 name = "curve25519-dalek"
 version = "2.1.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5d85653f070353a16313d0046f173f70d1aadd5b42600a14de626f0dfb3473a5"
+source = "git+https://github.com/garious/curve25519-dalek?rev=60efef3553d6bf3d7f3b09b5f97acd54d72529ff#60efef3553d6bf3d7f3b09b5f97acd54d72529ff"
 dependencies = [
+ "borsh",
  "byteorder",
  "digest 0.8.1",
- "rand_core",
+ "rand_core 0.5.1",
+ "serde",
  "subtle 2.2.3",
  "zeroize",
 ]
@@ -716,7 +716,7 @@ checksum = "c8492de420e9e60bc9a1d66e2dbb91825390b738a388606600663fc529b4b307"
 dependencies = [
  "byteorder",
  "digest 0.9.0",
- "rand_core",
+ "rand_core 0.5.1",
  "subtle 2.2.3",
  "zeroize",
 ]
@@ -826,7 +826,7 @@ checksum = "21a8a37f4e8b35af971e6db5e3897e7a6344caa3f92f6544f88125a1f5f0035a"
 dependencies = [
  "curve25519-dalek 2.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "ed25519",
- "rand",
+ "rand 0.7.3",
  "serde",
  "sha2",
  "zeroize",
@@ -847,7 +847,7 @@ dependencies = [
  "borsh",
  "clear_on_drop",
  "curve25519-dalek 2.1.0 (git+https://github.com/garious/curve25519-dalek?rev=60efef3553d6bf3d7f3b09b5f97acd54d72529ff)",
- "rand_core",
+ "rand_core 0.5.1",
  "serde",
  "sha2",
  "solana-sdk",
@@ -1529,7 +1529,7 @@ dependencies = [
  "crunchy",
  "digest 0.8.1",
  "hmac-drbg",
- "rand",
+ "rand 0.7.3",
  "sha2",
  "subtle 2.2.3",
  "typenum",
@@ -1613,7 +1613,7 @@ checksum = "c6feca46f4fa3443a01769d768727f10c10a20fdb65e52dc16a81f0c8269bb78"
 dependencies = [
  "byteorder",
  "keccak",
- "rand_core",
+ "rand_core 0.5.1",
  "zeroize",
 ]
 
@@ -2169,9 +2169,21 @@ checksum = "6a6b1679d49b24bbfe0c803429aa1874472f50d9b363131f0e89fc356b544d03"
 dependencies = [
  "getrandom 0.1.15",
  "libc",
- "rand_chacha",
- "rand_core",
- "rand_hc",
+ "rand_chacha 0.2.2",
+ "rand_core 0.5.1",
+ "rand_hc 0.2.0",
+]
+
+[[package]]
+name = "rand"
+version = "0.8.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c24fcd450d3fa2b592732565aa4f17a27a61c65ece4726353e000939b0edee34"
+dependencies = [
+ "libc",
+ "rand_chacha 0.3.0",
+ "rand_core 0.6.1",
+ "rand_hc 0.3.0",
 ]
 
 [[package]]
@@ -2181,7 +2193,17 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f4c8ed856279c9737206bf725bf36935d8666ead7aa69b52be55af369d193402"
 dependencies = [
  "ppv-lite86",
- "rand_core",
+ "rand_core 0.5.1",
+]
+
+[[package]]
+name = "rand_chacha"
+version = "0.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e12735cf05c9e10bf21534da50a147b924d555dc7a547c42e6bb2d5b6017ae0d"
+dependencies = [
+ "ppv-lite86",
+ "rand_core 0.6.1",
 ]
 
 [[package]]
@@ -2194,12 +2216,30 @@ dependencies = [
 ]
 
 [[package]]
+name = "rand_core"
+version = "0.6.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c026d7df8b298d90ccbbc5190bd04d85e159eaf5576caeacf8741da93ccbd2e5"
+dependencies = [
+ "getrandom 0.2.0",
+]
+
+[[package]]
 name = "rand_hc"
 version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "ca3129af7b92a17112d59ad498c6f81eaf463253766b90396d39ea7a39d6613c"
 dependencies = [
- "rand_core",
+ "rand_core 0.5.1",
+]
+
+[[package]]
+name = "rand_hc"
+version = "0.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "3190ef7066a446f2e7f42e239d161e905420ccab01eb967c9eb27d21b2322a73"
+dependencies = [
+ "rand_core 0.6.1",
 ]
 
 [[package]]
@@ -2839,7 +2879,7 @@ dependencies = [
  "either",
  "lazy_static",
  "libc",
- "rand_chacha",
+ "rand_chacha 0.2.2",
  "regex-syntax",
  "reqwest",
  "serde",
@@ -2931,7 +2971,7 @@ dependencies = [
  "clap",
  "log",
  "nix",
- "rand",
+ "rand 0.7.3",
  "serde",
  "serde_derive",
  "socket2",
@@ -2959,7 +2999,7 @@ dependencies = [
  "log",
  "num-derive",
  "num-traits",
- "rand",
+ "rand 0.7.3",
  "rustc_version",
  "rustversion",
  "serde",
@@ -3049,7 +3089,7 @@ dependencies = [
  "num-traits",
  "num_cpus",
  "ouroboros",
- "rand",
+ "rand 0.7.3",
  "rayon",
  "regex",
  "rustc_version",
@@ -3098,8 +3138,8 @@ dependencies = [
  "num-derive",
  "num-traits",
  "pbkdf2",
- "rand",
- "rand_chacha",
+ "rand 0.7.3",
+ "rand_chacha 0.2.2",
  "rustc_version",
  "rustversion",
  "serde",
@@ -3139,7 +3179,7 @@ dependencies = [
  "bincode",
  "digest 0.9.0",
  "libsecp256k1",
- "rand",
+ "rand 0.7.3",
  "sha3",
  "solana-logger",
  "solana-sdk",
@@ -3240,7 +3280,7 @@ dependencies = [
  "hash32",
  "libc",
  "log",
- "rand",
+ "rand 0.7.3",
  "scroll",
  "thiserror",
  "time",
@@ -3317,7 +3357,7 @@ dependencies = [
  "getrandom 0.1.15",
  "num-derive",
  "num-traits",
- "rand",
+ "rand 0.8.1",
  "solana-program",
  "thiserror",
 ]
@@ -3410,7 +3450,7 @@ dependencies = [
 name = "spl_token_perf_monitor"
 version = "0.0.1"
 dependencies = [
- "rand",
+ "rand 0.8.1",
  "solana-bpf-loader-program",
  "solana-runtime",
  "solana-sdk",
@@ -3512,7 +3552,7 @@ dependencies = [
  "humantime 2.0.1",
  "log",
  "pin-project 1.0.1",
- "rand",
+ "rand 0.7.3",
  "serde",
  "static_assertions",
  "tarpc-plugins",
@@ -3540,7 +3580,7 @@ checksum = "7a6e24d9338a0a5be79593e2fa15a648add6138caa803e2d5bc782c371732ca9"
 dependencies = [
  "cfg-if 0.1.10",
  "libc",
- "rand",
+ "rand 0.7.3",
  "redox_syscall",
  "remove_dir_all",
  "winapi 0.3.9",
@@ -3643,7 +3683,7 @@ dependencies = [
  "hmac",
  "once_cell",
  "pbkdf2",
- "rand",
+ "rand 0.7.3",
  "rustc-hash",
  "sha2",
  "unicode-normalization",
@@ -3997,7 +4037,7 @@ dependencies = [
  "input_buffer",
  "log",
  "native-tls",
- "rand",
+ "rand 0.7.3",
  "sha-1",
  "url",
  "utf-8",
@@ -4345,7 +4385,7 @@ source = "git+https://github.com/garious/zkp?rev=ed9eba6de4214fe67466b662b0d8017
 dependencies = [
  "curve25519-dalek 2.1.0 (git+https://github.com/garious/curve25519-dalek?rev=60efef3553d6bf3d7f3b09b5f97acd54d72529ff)",
  "merlin",
- "rand",
+ "rand 0.7.3",
  "serde",
  "serde_derive",
  "thiserror",
