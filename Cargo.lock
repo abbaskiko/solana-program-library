@@ -77,6 +77,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "3ae7d751998c189c1d4468cf0a39bb2eae052a9c58d50ebb3b9591ee3813ad50"
 
 [[package]]
+name = "ascii"
+version = "0.9.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "eab1c04a571841102f5345a8fc0f6bb3d31c315dec879b5c6e42e40ce7ffa34e"
+
+[[package]]
 name = "assert_matches"
 version = "1.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -456,8 +462,21 @@ version = "2.5.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "1645a65a99c7c8d345761f4b75a6ffe5be3b3b27a93ee731fccc5050ba6be97c"
 dependencies = [
- "ascii",
+ "ascii 0.7.1",
  "byteorder",
+]
+
+[[package]]
+name = "combine"
+version = "3.8.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "da3da6baa321ec19e1cc41d31bf599f00c783d0517095cdaf0332e3fe8d20680"
+dependencies = [
+ "ascii 0.9.3",
+ "byteorder",
+ "either",
+ "memchr",
+ "unreachable",
 ]
 
 [[package]]
@@ -684,13 +703,12 @@ dependencies = [
 [[package]]
 name = "curve25519-dalek"
 version = "2.1.0"
-source = "git+https://github.com/garious/curve25519-dalek?rev=60efef3553d6bf3d7f3b09b5f97acd54d72529ff#60efef3553d6bf3d7f3b09b5f97acd54d72529ff"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5d85653f070353a16313d0046f173f70d1aadd5b42600a14de626f0dfb3473a5"
 dependencies = [
- "borsh",
  "byteorder",
  "digest 0.8.1",
  "rand_core",
- "serde",
  "subtle 2.2.3",
  "zeroize",
 ]
@@ -698,12 +716,13 @@ dependencies = [
 [[package]]
 name = "curve25519-dalek"
 version = "2.1.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5d85653f070353a16313d0046f173f70d1aadd5b42600a14de626f0dfb3473a5"
+source = "git+https://github.com/garious/curve25519-dalek?rev=60efef3553d6bf3d7f3b09b5f97acd54d72529ff#60efef3553d6bf3d7f3b09b5f97acd54d72529ff"
 dependencies = [
+ "borsh",
  "byteorder",
  "digest 0.8.1",
  "rand_core",
+ "serde",
  "subtle 2.2.3",
  "zeroize",
 ]
@@ -1153,6 +1172,17 @@ name = "goblin"
 version = "0.2.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d20fd25aa456527ce4f544271ae4fea65d2eda4a6561ea56f39fb3ee4f7e3884"
+dependencies = [
+ "log",
+ "plain",
+ "scroll",
+]
+
+[[package]]
+name = "goblin"
+version = "0.3.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "669cdc3826f69a51d3f8fc3f86de81c2378110254f678b8407977736122057a4"
 dependencies = [
  "log",
  "plain",
@@ -2172,6 +2202,7 @@ dependencies = [
  "rand_chacha",
  "rand_core",
  "rand_hc",
+ "rand_pcg",
 ]
 
 [[package]]
@@ -2198,6 +2229,15 @@ name = "rand_hc"
 version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "ca3129af7b92a17112d59ad498c6f81eaf463253766b90396d39ea7a39d6613c"
+dependencies = [
+ "rand_core",
+]
+
+[[package]]
+name = "rand_pcg"
+version = "0.2.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "16abd0c1b639e9eb4d7c50c0b8100b0d0f849be2349829c740fe8e6eb4816429"
 dependencies = [
  "rand_core",
 ]
@@ -2723,7 +2763,7 @@ dependencies = [
  "num-traits",
  "solana-runtime",
  "solana-sdk",
- "solana_rbpf",
+ "solana_rbpf 0.1.32",
  "thiserror",
 ]
 
@@ -3235,8 +3275,26 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9a95dbe2b00920ac4e1524b7442cf5319f01e8fa5742930ac60148882fd7738b"
 dependencies = [
  "byteorder",
- "combine",
- "goblin",
+ "combine 2.5.2",
+ "goblin 0.2.3",
+ "hash32",
+ "libc",
+ "log",
+ "rand",
+ "scroll",
+ "thiserror",
+ "time",
+]
+
+[[package]]
+name = "solana_rbpf"
+version = "0.2.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6e3089d0175f975358b602072a02bd327a154399d2b54a8cf0f8f21108a4de4c"
+dependencies = [
+ "byteorder",
+ "combine 3.8.1",
+ "goblin 0.3.4",
  "hash32",
  "libc",
  "log",
@@ -3287,7 +3345,7 @@ dependencies = [
  "solana-bpf-loader-program",
  "solana-program",
  "solana-sdk",
- "solana_rbpf",
+ "solana_rbpf 0.2.5",
 ]
 
 [[package]]
@@ -3414,7 +3472,7 @@ dependencies = [
  "solana-bpf-loader-program",
  "solana-runtime",
  "solana-sdk",
- "solana_rbpf",
+ "solana_rbpf 0.2.5",
  "spl-token 3.0.0",
 ]
 
@@ -4065,6 +4123,15 @@ name = "unicode-xid"
 version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "826e7639553986605ec5979c7dd957c7895e93eabed50ab2ffa7f6128a75097c"
+
+[[package]]
+name = "unreachable"
+version = "1.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "382810877fe448991dfc7f0dd6e3ae5d58088fd0ea5e35189655f84e6814fa56"
+dependencies = [
+ "void",
+]
 
 [[package]]
 name = "untrusted"
